@@ -1,9 +1,16 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <nav v-if="!isAuthenticated">
+    <router-link to="/login">login</router-link> |
+    <router-link to="/register">register</router-link> |
+    <router-link to="/board">board</router-link>
   </nav>
-  <router-view/>
+  <nav v-else>
+    <a @click="logout()">logout</a> |
+    <router-link to="/board">board</router-link>
+  </nav>
+  <div class="container">
+    <router-view/>
+  </div>
 </template>
 
 <style>
@@ -28,3 +35,25 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
+
+<script>
+import { mapState } from 'vuex'
+import VueCookies from 'vue-cookies'
+
+export default {
+  computed: {
+    ...mapState('user', ['isAuthenticated'])
+  },
+  mounted() {
+    console.log('why '+this.isAuthenticated);
+  },
+  methods: {
+    logout() {
+      VueCookies.remove('accessToken');
+      this.$store.commit('user/logoutToken')
+      this.$router.push('/');
+    }
+  },
+
+}
+</script>
