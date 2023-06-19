@@ -3,6 +3,7 @@
 
 <script>
 import { mapMutations, mapActions } from 'vuex'
+import Vuecookies from "vue-cookies";
 
 export default {
   created () {
@@ -14,8 +15,8 @@ export default {
 
     // 토큰이 존재하는 경우, Vuex Store에 토큰을 저장한다.
     if (token) {
-      this.$store.commit('user/loginToken', token);
-      alert("로그인 성공")
+      this.$store.commit('user/loginToken', token)
+        alert("로그인 성공");
     }
 
     // 토큰이 있던 없던, 루트 페이지로 이동한다.

@@ -15,7 +15,7 @@ const routes = [
     component: login
   },
   {
-    path: '/oauth2/redirect', 
+    path: '/oauth/redirect', 
     name: 'redirect', 
     component: redirect
   }

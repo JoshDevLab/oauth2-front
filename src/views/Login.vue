@@ -15,15 +15,15 @@
         </div>
 
         <div class="form-group d-flex justify-content-center">
-            <a href="http://localhost:8081/oauth2/authorize/google?redirect_uri=http://localhost:3000/oauth2/redirect">
-            <img class="bi me-2" width="55" height="55" src="" />
+            <a href="http://localhost:8081/oauth2/authorization/google?redirect_uri=http://localhost:3000/oauth/redirect">
+            <img class="bi me-2" width="55" height="55" src="@/assets/btn_google_signin_light_normal_ios.png" />
             </a>
-            <!-- <a href="http://localhost:8080/oauth2/authorize/naver?redirect_uri=http://localhost:3001/oauth2/redirect">
-                <img class="bi me-2" width="55" height="55" src="../assets/naver.png" />
+            <a href="http://localhost:8081/oauth2/authorization/naver?redirect_uri=http://localhost:3000/oauth/redirect">
+                <img class="bi me-2" width="55" height="55" src="@/assets/btnW_아이콘사각.png" />
             </a>
-            <a href="http://localhost:8080/oauth2/authorize/kakao?redirect_uri=http://localhost:3001/oauth2/redirect">
-                <img class="bi me-2" width="55" height="55" src="../assets/kakao.png" />
-            </a> -->
+            <a href="http://localhost:8081/oauth2/authorization/kakao?redirect_uri=http://localhost:3000/oauth/redirect">
+                <img class="bi me-2" width="55" height="55" src="@/assets/kakao_login_small.png" />
+            </a>
         </div>
         <button class="w-100 btn btn-lg btn-primary" @click="login()">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2023</p>

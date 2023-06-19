@@ -1,57 +1,53 @@
 <template>
-  <nav v-if="!isAuthenticated">
-    <router-link to="/login">login</router-link> |
-    <router-link to="/register">register</router-link> |
-    <router-link to="/board">board</router-link>
-  </nav>
-  <nav v-else>
-    <a @click="logout()">logout</a> |
-    <router-link to="/board">board</router-link>
-  </nav>
+  <div class="container">
+    <header class="blog-header lh-1 py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <a class="link-secondary" href="#" @click="test()">Subscribe</a>
+        </div>
+        <div class="col-4 text-center">
+          <a class="blog-header-logo text-dark" href="#">Large</a>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <a class="link-secondary" href="#" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+          </a>
+          <router-link to="/login" class="btn btn-sm btn-outline-secondary" href="#">Sign up</router-link>
+        </div>
+      </div>
+    </header>
+  </div>
   <div class="container">
     <router-view/>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-}
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
 
 <script>
 import { mapState } from 'vuex'
 import VueCookies from 'vue-cookies'
+import axios from "axios";
 
 export default {
   computed: {
     ...mapState('user', ['isAuthenticated'])
   },
   mounted() {
-    console.log('why '+this.isAuthenticated);
+    // console.log('why '+this.isAuthenticated);
   },
   methods: {
     logout() {
       VueCookies.remove('accessToken');
       this.$store.commit('user/logoutToken')
       this.$router.push('/');
+    },
+
+    test() {
+      this.$store.dispatch('user/test');
     }
   },
 
