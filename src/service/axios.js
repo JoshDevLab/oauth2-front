@@ -15,7 +15,6 @@ axios.interceptors.request.use(
 
     // axios config에 withCredentials: true 옵션을 추가한다. 쿠키를 같이전송
     config = {...config, withCredentials: true}
-    console.log(config);
     return config;
   },
   function (err) {
@@ -31,8 +30,8 @@ axios.interceptors.response.use(
   function (response) {
     // 응답 이후 수행할 로직 ex) 데이터 가공 등
     // ...
-    console.log("통신성공" + Vuecookies.get('accessToken'));
-    console.log(response);
+    // console.log("통신성공" + Vuecookies.get('accessToken'));
+    // console.log(response);
     return response;
   },
   async (err) => {
@@ -41,14 +40,18 @@ axios.interceptors.response.use(
       response: { status },
     } = err;
     
+    console.log(config);
+
     if(status === 401) {
-      console.log(err.response.data.message);
+      // console.log(err.response.data.message);
       if(err.response.data.message === 'Expired JWT token.') {
         axios.post('http://localhost:8081/api/v1/auth/refresh')
         .then(res => {
-          console.log(res);
-          console.log("새로 발급받은 토큰 " + res.data.body.token);
+          // console.log(res);
+          // console.log("새로 발급받은 토큰 " + res.data.body.token);
           store.commit('user/loginToken', res.data.body.token)
+          // location.reload()
+          // return axios(config); //기존의 요청 다시보냄
         })
       }
     }
