@@ -47,7 +47,7 @@ axios.interceptors.response.use(
       if(err.response.data.message === 'Expired JWT token.') {
         axios.post('http://localhost:8081/api/v1/auth/refresh')
         .then(res => {
-          // console.log(res);
+          console.log(res);
           // console.log("새로 발급받은 토큰 " + res.data.body.token);
           store.commit('user/loginToken', res.data.body.token)
           // location.reload()

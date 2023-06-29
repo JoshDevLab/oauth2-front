@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import login from '@/views/Login.vue'
 import redirect from "@/views/Redirect";
 import home from "@/views/HomeView";
+import Posts from "@/views/Posts";
+import PostsReg from "@/views/PostsReg";
 
 const routes = [
   {
@@ -18,9 +20,17 @@ const routes = [
     path: '/oauth/redirect', 
     name: 'redirect', 
     component: redirect
-  }
-  
-
+  },
+  {
+    path: '/posts', 
+    name: 'posts', 
+    component: Posts
+  },
+  {
+    path: '/posts/reg', 
+    name: 'postsReg', 
+    component: PostsReg
+  },
 ]
 
 const router = createRouter({
